@@ -96,3 +96,78 @@ void quicksort(int a[], int l, int r){
 
 6.归并排序：将有序数组合并，若数组不有序则继续对半划分，直至划分至一个数字则认为有序。
 时间复杂度：O（nlogn） 空间复杂度O（n） 稳定
+void mergesort(int a[], int l, int r){
+    if(r-l<=1)
+        return;
+    int mid=(l+r)>>1;
+    mergesort(a,l,mid);mergesort(a,mid,r);
+    cout << l << ' ' << r << endl;
+    //merge two sort array
+    int *tmp=new int[r-l];
+    int k=0;
+    int i=l,j=mid;
+    while(i<mid&&j<r){
+        if(a[i]<a[j]){
+            tmp[k++]=a[i++];
+        }
+        else
+            tmp[k++]=a[j++];
+    }
+    if(i==mid){
+        for(;j<r;j++,k++){
+            cout << k << ' ' << j << endl;
+            tmp[k]=a[j];
+        }
+    }
+    if(j==r){
+        for(;i<mid;i++,k++)
+            tmp[k]=a[i];
+    }
+    for(int c=0;c<r-l;c++)
+        a[l+c]=tmp[c];
+}
+在写这个归并时碰到了一个问题，即new int后面跟着是()还是[],记住 new 后面跟着是[]!!!
+
+7.堆排序:建立树结构，每个节点与子节点比较，从而得到最大值，然后放置于数组末尾，然后重复过程。
+时间复杂度：O（nlogn） 空间复杂度O（1） 不稳定:由于只是父子节点比较，在交换顺序时得不到其他节点信息。
+void heapsort(int a[], int n){
+    cout << n << endl;
+    if(n<=1)
+        return;
+    int start=(n-1)/2-1;
+    for(int i=start;i>=0;i--){
+        if((i+1)*2==n){
+            if(a[i]<a[(i+1)*2-1]){
+                int tmp=a[i];
+                a[i]=a[(i+1)*2-1];
+                a[(i+1)*2-1]=tmp;
+            }
+        }
+        else{
+            if(a[i]<a[(i+1)*2-1]){
+                int tmp=a[i];
+                a[i]=a[(i+1)*2-1];
+                a[(i+1)*2-1]=tmp;
+            }
+            if(a[i]<a[(i+1)*2]){
+                int tmp=a[i];
+                a[i]=a[(i+1)*2];
+                a[(i+1)*2]=tmp;
+            }
+        }
+    }
+    int tmp=a[0];
+    cout << tmp << endl;
+    a[0]=a[n-1];
+    a[n-1]=tmp;
+    heapsort(a,n-1);
+}
+
+8.计数counting排序/bin排序：预先分配包含最小值和最大值的数组，然后将待排序数组里的值依次放入相应下标的数组里。
+时间复杂度：O（n+k） 空间复杂度O（k） 稳定
+
+9.桶Bucket排序：设置许多个桶，如第一个桶放1-5，第二个桶放6-10...，桶内部排序后，拼接即可。类似计数排序。
+时间复杂度：O（n+k） 空间复杂度O（k） 稳定
+
+10.基数Radix排序：根据每个数的位数排序，从低位（个位）到高位，第一轮排个位，放到0-9的桶里，然后按桶的数字拿出来，第二轮排十位，放到0-9的桶里，...
+时间复杂度：O（n*k） 空间复杂度O（k） 稳定
