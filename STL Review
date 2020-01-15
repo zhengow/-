@@ -1,0 +1,46 @@
+20200115
+  1. six elements: containers(data structure)/ algorithms/ iterators/ allocators/ functors?/ adapters?
+     algorithms use iterators to get the data from containers.
+     allocators allocate memory for containers to save data.
+     functors is something that behave like function
+     adapters??
+  2. begin,end is [begin,end)
+  3. using declaration to loop (and using auto)
+     for( declaration:coll){
+        statement;
+     }
+     examples:
+     for(int i :{1,2,3,4,5}){
+        ;
+     }
+     for(auto elem: vec){
+        ;
+     }
+     for(auto& elem:vec){
+        elem *= 3;  /*if we want to change vec*/
+     }
+  4.Sequence Containers: array, vector, deque, list, forward-list
+    Associative Containers:set/multiset, map/multimap
+    Unordered Containers(it is kind of associative containers): Unordered Set/Multiset, Unordered Map/multimap
+    HashTable(most use: Separate chaining)
+    They all have "find" function.
+  5. vec.size():the numbers of existing elements, vec.front():first element, vec.back():last element, 
+     vec.data():the location of first element, vec.capacity():the total size of containers.
+  6. if containers have sort function, then it is usually better than the one in <algorithm>
+  7. Sequence Containers:
+       Array:fixed
+       Vector:dynamic (backward), double size growth!!(1,2,4,8,16...).
+       List: (double direction),single size growth(1,2,3,4,5...). 
+       Forward_list: (single direction), use push_front(), no size,no back
+       Deque:(double direction queue), each element use a buffer, push_front(),push_back()
+       Stack:(from Deque, sometimes called adapter)FILO, push,pop,top,size...
+       Queue:(from Deque, sometimes called adapter)FIFO, push,front,back
+     Associative Containers:
+       Multiset(RB tree):insert()
+       Multimap(RB tree):insert(pair<type1,type2>(elem1,elem2)), get elem in map: iterator.first, iterator.second
+       Unordered(hash)_multiset(hash table):
+       Unordered(hash)_multimap(hash table):
+       Unordered_set/ Unordered_map
+       Set(RB tree): unique key, key==value
+       Map(RB tree): unique key, key usually not equal != to value. M[key]=value or m.insert()
+       
