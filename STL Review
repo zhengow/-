@@ -4,7 +4,7 @@
      allocators allocate memory for containers to save data.
      functors is something that behave like function
      adapters??
-  2. begin,end is [begin,end)
+  2. begin,end is [begin,end) (left close, right open)
   3. using declaration to loop (and using auto)
      for( declaration:coll){
         statement;
@@ -43,4 +43,15 @@
        Unordered_set/ Unordered_map
        Set(RB tree): unique key, key==value
        Map(RB tree): unique key, key usually not equal != to value. M[key]=value or m.insert()
+
+
+20200118
+  8. Operator Overloading: -> will repeat until it "touch" the built-in type
+  9. Generalization and (Partial)Specialization: set a specialized type for template(such as int, double...), for efficiency.
+     Partial specialization is partial set, or set a template parameter to point template.
+  10.Allocator: some files use OPERATOR NEW(which use malloc) to allocate memory for each time. 
+                  (malloc needs some space to record header files (cookies), so it exists waste. 
+                  The cookies record the number of bytes that this kind of class uses, like int use 4 bytes)
+                some files also use OPERATOR NEW, but it malloc more memory at one time, so it save space by reducing cookies.
+  11.List: Smart pointer! And it is double direction and close circle.
        
